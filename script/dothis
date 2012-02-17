@@ -5,11 +5,50 @@ use strict;
 use warnings;
 use Attribute::Constant;
 use App::DoThis;
+use Getopt::Long;
+use Pod::Usage;
 
 my $APP_NAME : Constant('dothis');
+
+my ($help, $version);
+my $opts_are_parsed = GetOptions('help' => \$help, 'version' => \$version);
+pod2usage(-exitval => 0, -verbose => 1) if $help;
+say App::DoThis->VERSION and exit 0 if $version;
+pod2usage(-exitval => 2, -verbose => 1) unless $opts_are_parsed and @ARGV;
 
 # die "Growl cannot be detected\n" unless growl_installed;
 die "Growl is not running\n" unless growl_running;
 
 register_application($APP_NAME);
 dothis @ARGV;
+
+__END__
+
+=head1 NAME
+
+dothis - Notify via Growl when a command is done
+
+=head1 SYNOPSIS
+
+dothis [options] command ...
+
+=head1 OPTIONS
+
+=head2 --help
+
+Display this text.
+
+=head2 --version
+
+Display the version number.
+
+=head1 AUTHOR
+
+Koichi SATOH E<lt>sekia@cpan.orgE<gt>
+
+=head1 LICENSE
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut

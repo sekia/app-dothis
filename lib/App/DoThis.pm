@@ -75,7 +75,7 @@ __END__
 
 =head1 NAME
 
-App::DoThis -
+App::DoThis - Notify via Growl when a command is done
 
 =head1 SYNOPSIS
 
@@ -88,8 +88,6 @@ App::DoThis is a command line utility that excutes a command and notify its term
 =head1 AUTHOR
 
 Koichi SATOH E<lt>sekia@cpan.orgE<gt>
-
-=head1 SEE ALSO
 
 =head1 LICENSE
 
